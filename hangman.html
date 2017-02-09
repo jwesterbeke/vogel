@@ -39,37 +39,40 @@
 		//var letter = document.getElementById('letter').value;
 		var woord = "smurfendorp"; //dit is het woord
 		var letterbak = woord.split(''); //dit is het woord, maar dan losse letters
-		var beurt = 0;
+		var beurtg = 0;
+		var beurtf = 0;
+		var beurttot = 0;
 		// var maxbeurt = 12
 
 		console.log("var woord = " + woord);
 		console.log("aantal letters van woord = " + woord.length);
 		console.log("letterbak array = " + letterbak);
-		console.log("beurt = " + beurt);
+		console.log("initional beurtg,beurtf,beurttot= " + beurtg + beurtf + beurttot);
 
 
 		// letter raden
 			function submitLetter (letter){
-				console.log("ingevulde letter = "  + letter);
-				console.log("beurt = " + beurt);
+				console.log("Function submitletter is running. Ingevulde letter = "  + letter);
+				console.log("beurtg = " + beurtg);
 				// indien goed, doe dit
 				if (woord.indexOf(letter) > -1) {
-					beurtgoed = beurt +1;
+					beurtgoed = beurtg ++;
 					console.log("goed, beurtgoed = " + beurtgoed);
-					console.log("totale beurten = " + beurt);
+					console.log("totale beurten = " + beurttot);
 					// functie aanroepen die de letter in de letters geraden array zet
 					geradenLetter(letter);
 					}
 					// indien fout, doe dit
 				else {
-					beurtfout = beurt +1;
+					beurtfout = beurtf ++;
 					console.log("fout, beurtfout = " + beurtfout);
-					console.log("totale beurten = " + beurt);
+					console.log("totale beurten = " + beurttot);
 					// foute letter in fouteletters array zetten
 					var fouteletters = new Array();
 					fouteletters.push(letter);
 					console.log("fouteletters array = " + fouteletters);
 				  }
+					beurttot = beurtg + beurtf;
 		    }
 
 				//welke letters zijn er al geraden
@@ -81,7 +84,7 @@
 				console.log("lettersgeraden array = " + lettersgeraden); //array met puntjes en gevonden letters
 
 				function geradenLetter (letter) {
-					console.log('geradenLetter = ' + letter);
+					console.log('Function geradenletter is running. geradenLetter = ' + letter);
 					//var letterpositie = x;
 
 					for(i in letterbak){
