@@ -39,49 +39,60 @@
 		//var letter = document.getElementById('letter').value;
 		var woord = "smurfendorp"; //dit is het woord
 		var letterbak = woord.split(''); //dit is het woord, maar dan losse letters
+		var beurt = 0;
+		// var maxbeurt = 12
 
-		console.log("Het te raden woord heeft " + woord.length + " letters");
-		console.log("Dit zijn alle losse letters van het woord " + letterbak);
+		console.log("var woord = " + woord);
+		console.log("aantal letters van woord = " + woord.length);
+		console.log("letterbak array = " + letterbak);
+		console.log("beurt = " + beurt);
+
 
 		// letter raden
+			function submitLetter (letter){
+				console.log("ingevulde letter = "  + letter);
+				console.log("beurt = " + beurt);
+				// indien goed, doe dit
+				if (woord.indexOf(letter) > -1) {
+					beurtgoed = beurt +1;
+					console.log("goed, beurtgoed = " + beurtgoed);
+					console.log("totale beurten = " + beurt);
+					// functie aanroepen die de letter in de letters geraden array zet
+					geradenLetter(letter);
+					}
+					// indien fout, doe dit
+				else {
+					beurtfout = beurt +1;
+					console.log("fout, beurtfout = " + beurtfout);
+					console.log("totale beurten = " + beurt);
+					// foute letter in fouteletters array zetten
+					var fouteletters = new Array();
+					fouteletters.push(letter);
+					console.log("fouteletters array = " + fouteletters);
+				  }
+		    }
 
-		function submitLetter (letter){
-			console.log("Dit is de ingevulde letter "  + letter );
-			// indien goed, doe dit
-			if (woord.indexOf(letter) > -1) {
-				console.log(" gevonden ");
-				// nog een keer poging
-				// functie aanroepen die de letter in de letters geraden array zet
-				guessedLetter(letter);
+				//welke letters zijn er al geraden
+
+				var lettersgeraden = new Array(woord.length);
+				for (i = 1; i <= woord.length; i++){
+					lettersgeraden[i] = ".";
 				}
-			else {
-				console.log(" verloren ");
-				// fout, in foute array zetten
-			}
-		}
+				console.log("lettersgeraden array = " + lettersgeraden); //array met puntjes en gevonden letters
 
-		//welke letters zijn er al geraden
+				function geradenLetter (letter) {
+					console.log('geradenLetter = ' + letter);
+					//var letterpositie = x;
 
-		var lettersgeraden = new Array(woord.length);
-		for (i = 1; i <= woord.length; i++){
-			lettersgeraden[i] = ".";
-		}
-		console.log(lettersgeraden); //array met puntjes
+					for(i in letterbak){
+						console.log("letter " + letterbak[i]);
 
-		function guessedLetter (letter) {
-			console.log('guessedLetter= ' + letter);
-			//var letterpositie = x;
-
-			for(i in letterbak){
-				console.log("letter " + letterbak[i]);
-
-				if(letter == letterbak[i]) {
-					console.log("tessst " + i);
-					// hier moet de letter op de juiste plek plaatsen
-					lettersgeraden[i] = letter;
-				}
-
-			}
+						if(letter == letterbak[i]) {
+							console.log("tessst " + i);
+							// hier moet de letter op de juiste plek plaatsen
+							lettersgeraden[i] = letter;
+						}
+					}
 
 // 			for (x = 1; x <= letterbak.length; x++){
 // 				// als de letterpositie gelijk is aan de positie op welke deze staat in letterbak
