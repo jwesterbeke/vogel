@@ -78,7 +78,7 @@
 				//welke letters zijn er al geraden
 
 				var lettersgeraden = new Array(woord.length);
-				for (i = 1; i <= woord.length; i++){
+				for (i = 0; i < woord.length; i++){
 					lettersgeraden[i] = ".";
 				}
 				console.log("lettersgeraden array = " + lettersgeraden); //array met puntjes en gevonden letters
@@ -91,10 +91,11 @@
 						console.log("letter " + letterbak[i]);
 
 						if(letter == letterbak[i]) {
-							console.log("tessst " + i);
+							// console.log("tessst " + i);
 							// hier moet de letter op de juiste plek plaatsen
 							lettersgeraden[i] = letter;
 						}
+						console.log("lettersgeraden = " + lettersgeraden);
 					}
 
 // 			for (x = 1; x <= letterbak.length; x++){
