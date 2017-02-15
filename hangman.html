@@ -24,10 +24,11 @@
 		</div>
 
 		<form onsubmit="return false" style="width: 400px; margin: 20px auto;">
-		<input type="text" id="letter" placeholder="Vul een letter in" style="padding: 5px 15px;" />
+		<input type="text" maxlength="1" id="letter" placeholder="Vul een letter in" style="padding: 5px 15px;" />
 		<button onclick="submitLetter(document.getElementById('letter').value);" style="padding: 5px 15px;">Submit</button>
 		</form>
 	</div>
+	<div id="notificatie"></div>
 	<script>
 
 		// naam cursist
@@ -76,6 +77,7 @@
 						document.writeln('niet geraden je bent af');
 					}
 					console.log("totale beurten = " + beurttot);
+					$('#letter').val(''); // value leeg maken van input veld
 		   }
 
 				//welke letters zijn er al geraden
@@ -94,6 +96,7 @@
 						//console.log("letter " + letterbak[i]);
 
 						if(letter == letterbak[i]) {
+							$('#letters-geraden > span:nth('+i+')').html( letterbak[i] );
 							// console.log("tessst " + i);
 							// hier moet de letter op de juiste plek plaatsen
 							lettersgeraden[i] = letter;
@@ -102,6 +105,13 @@
 					}
 					console.log("letter " + letterbak[i]);
 					console.log("lettersgeraden = " + lettersgeraden);
+					if (beurtg==woord.length){
+						$('#notificatie').html('gefeliciteerd');
+						$('#container').hide();
+					}
+
+
+					// $('#letters-geraden').html(lettersgeraden);
 					// als er geen punten meer zijn is het woord geraden
 				}
 
