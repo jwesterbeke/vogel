@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body style=" background: #ccc;">
-	<div style="width: 900px; margin: 0 auto; background-color: #fff; padding: 20px;">
+	<div id="container" style="width: 900px; margin: 0 auto; background-color: #fff; padding: 20px;">
 		<h1 style="margin: 0 auto; width: 300px;">Welkom <span id="naam"></span></h1>
 
 		<div id="letters-geraden">
@@ -42,6 +42,7 @@
 		var beurtg = 0;
 		var beurtf = 0;
 		var beurttot = 0;
+		var fouteletters = new Array();
 		// var maxbeurt = 12
 
 		console.log("var woord = " + woord);
@@ -56,24 +57,26 @@
 				console.log("beurtg = " + beurtg);
 				// indien goed, doe dit
 				if (woord.indexOf(letter) > -1) {
-					beurtgoed = beurtg ++;
-					console.log("goed, beurtgoed = " + beurtgoed);
-					console.log("totale beurten = " + beurttot);
+					beurtg++;
+					console.log("goed, beurtg = " + beurtg);
 					// functie aanroepen die de letter in de letters geraden array zet
 					geradenLetter(letter);
-					}
+				}
 					// indien fout, doe dit
 				else {
-					beurtfout = beurtf ++;
-					console.log("fout, beurtfout = " + beurtfout);
-					console.log("totale beurten = " + beurttot);
+					beurtf++;
+					console.log("fout, beurtf = " + beurtf);
 					// foute letter in fouteletters array zetten
-					var fouteletters = new Array();
 					fouteletters.push(letter);
 					console.log("fouteletters array = " + fouteletters);
-				  }
+				}
 					beurttot = beurtg + beurtf;
-		    }
+					if (beurtf > 5) {
+						document.getElementById('container').style.display='none';
+						document.writeln('niet geraden je bent af');
+					}
+					console.log("totale beurten = " + beurttot);
+		   }
 
 				//welke letters zijn er al geraden
 
@@ -88,28 +91,21 @@
 					//var letterpositie = x;
 
 					for(i in letterbak){
-						console.log("letter " + letterbak[i]);
+						//console.log("letter " + letterbak[i]);
 
 						if(letter == letterbak[i]) {
 							// console.log("tessst " + i);
 							// hier moet de letter op de juiste plek plaatsen
 							lettersgeraden[i] = letter;
 						}
-						console.log("lettersgeraden = " + lettersgeraden);
+
 					}
-
-// 			for (x = 1; x <= letterbak.length; x++){
-// 				// als de letterpositie gelijk is aan de positie op welke deze staat in letterbak
-// 				if(letter == letterbak[0]){
-// 					console.log("test");
-// 					//lettersgeraden.splice(x, 0, letter);
-// 				}
-
-// 			}
-		}
+					console.log("letter " + letterbak[i]);
+					console.log("lettersgeraden = " + lettersgeraden);
+					// als er geen punten meer zijn is het woord geraden
+				}
 
 
-		// als er geen punten meer zijn is het woord geraden
 
 </script>
 
